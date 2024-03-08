@@ -70,5 +70,14 @@ public class CustomList extends ArrayAdapter<City> {
         return false;
     }
 
+    public void deleteCity(String cityName) {
+        cities.removeIf(city -> city.getCityName().equals(cityName));
+    }
 
+    public int countCities() {
+        return getCount();
+
+
+    }
 }
+
