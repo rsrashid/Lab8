@@ -1,47 +1,39 @@
 package com.example.lab8;
 
-
-import static org.junit.Assert.assertFalse;
-import static org.junit.Assert.assertTrue;
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
 
 public class CustomListTest {
     private CustomList list;
-    /**
-     * create a mocklist for my citylist
-     * @return
-     */
-    public CustomList MockCityList(){
-        list = new CustomList(null,new ArrayList<>());
-        return list;
+
+    @BeforeEach
+    public void setUp() {
+        list = new CustomList(null, new ArrayList<>());
     }
-    /**
-     * get the size of the list
-     * increase the list by adding a new city
-     * check if our current size matches the initial size
-     plus one
-     */
+
     @Test
-    public void addCityTest(){
-        list = MockCityList();
+    public void addCityTest() {
         int listSize = list.getCount();
         list.addCity(new City("Calgary", "AB"));
-        assertEquals(list.getCount(),listSize + 1);
+        assertEquals(list.getCount(), listSize + 1);
     }
 
     @Test
     public void hasCityTest() {
-        list.addCity(new City("Halifax", "NS"));
-        assertEquals(list.hasCity(), true);
+        assertFalse(list.hasCity());
+        list.addCity(new City("Cochrane", "AB"));
+        assertTrue(list.hasCity());
     }
 
     @Test
     public void deleteCityTest() {
-        list.addCity(new City("Halifax", "NS"));
+        list.addCity(new City("Cochrane", "AB"));
         int listSize = list.getCount();
         list.deleteCity();
         assertEquals(list.getCount(), listSize - 1);
@@ -50,7 +42,7 @@ public class CustomListTest {
     @Test
     public void countCityTest() {
         assertEquals(list.getCount(), 0);
-        list.addCity(new City("Halifax", "NS"));
+        list.addCity(new City("Cochrane", "AB"));
         assertEquals(list.getCount(), 1);
         list.addCity(new City("Edmonton", "AB"));
         assertEquals(list.getCount(), 2);

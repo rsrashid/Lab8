@@ -60,7 +60,7 @@ public class CustomList extends ArrayAdapter<City> {
     public void addCity(City city){
         cities.add(city);
     }
-    
+
     public Boolean hasCity() {
         return !cities.isEmpty();
     }
@@ -68,5 +68,6 @@ public class CustomList extends ArrayAdapter<City> {
     public void deleteCity() {
         cities.remove(cities.size() - 1);
     }
+
 }
 
